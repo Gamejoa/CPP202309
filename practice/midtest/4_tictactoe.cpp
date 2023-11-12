@@ -42,18 +42,18 @@ bool checkWin(char currnetUser) {
 
 
 
-bool isValid() {
+bool isValid(int x, int y) {
 
 	if (x >= numCell || y >= numCell) {// 좌표 범위를 벗어날때
 		cout << x << "," << y << ": x와 y둘중 하나가 칸을 벗어납니다. " << endl;
-		return true;
+		return false;
 	}
 	if (board[x][y] != ' ') {// 좌표범위의 입력값이 중복될때
 		cout << x << "," << y << ": 이미 돌이 차있습니다. " << endl;
-		return true;
+		return false;
 	}
 
-	return false;
+	return true;
 }
 
 int main() {
