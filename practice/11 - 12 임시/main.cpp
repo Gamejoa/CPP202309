@@ -26,12 +26,12 @@ int main() {
 	// 유저의 위치를 저장할 변수
 	int user_x = 0; // 가로 번호
 	int user_y = 0; // 세로 번호
-	
+
 	User my_user;
-	my_user.hp = 20;
+	
 
 	// 게임 시작 
-	while (my_user.hp > 0) { // 사용자의 체력이 hp가 0보다 크면 무한 반복  (추가한 부분 )
+	while (my_user.GetHp() > 0) { // 사용자의 체력이 hp가 0보다 크면 무한 반복  (추가한 부분 )
 
 		cout << "현재 HP: " << my_user.GetHp() << endl; // 현재 체력 출력 (기능 6번)
 
@@ -53,7 +53,7 @@ int main() {
 			else { // 기능 1번 (상하좌우 이동 )
 				cout << "위로 한 칸 올라갑니다." << endl;
 				displayMap(map, user_x, user_y);
-				my_user.DecreaseHp(my_user.hp);
+				my_user.DecreaseHp(1);
 			}
 		}
 		else if (user_input == "하") {
@@ -67,7 +67,7 @@ int main() {
 			else {
 				cout << "아래로 한 칸 내려갑니다." << endl;
 				displayMap(map, user_x, user_y);
-				my_user.DecreaseHp(my_user.hp);
+				my_user.DecreaseHp(1);
 			}
 		}
 		else if (user_input == "좌") {
@@ -82,7 +82,7 @@ int main() {
 			else {
 				cout << "왼쪽으로 이동합니다." << endl;
 				displayMap(map, user_x, user_y);
-				my_user.DecreaseHp(my_user.hp);
+				my_user.DecreaseHp(1);
 			}
 		}
 		else if (user_input == "우") {
@@ -96,7 +96,7 @@ int main() {
 			else {
 				cout << "오른쪽으로 이동합니다." << endl;
 				displayMap(map, user_x, user_y);
-				my_user.DecreaseHp(my_user.hp);
+				my_user.DecreaseHp(1);
 			}
 		}
 		else if (user_input == "지도") {
@@ -120,13 +120,13 @@ int main() {
 			break;
 		}
 
-		checkState(map, user_x, user_y, my_user.hp);
+		checkState(map, user_x, user_y, my_user.xxx);
 
 
 	}
 
 	// 기능 7번
-	if (my_user.hp <= 0) {
+	if (my_user.GetHp() <= 0) {
 		cout << "실패! HP가 0이 되었습니다!" << endl;
 	}
 
@@ -190,7 +190,7 @@ bool checkGoal(int map[][mapX], int user_x, int user_y) {
 void checkState(int map[][mapX], int user_x, int user_y, int& user_hp) {
 	int posState = map[user_y][user_x];
 	User my_user;
-	
+
 
 	switch (posState) {
 	case 0:
@@ -200,11 +200,13 @@ void checkState(int map[][mapX], int user_x, int user_y, int& user_hp) {
 		cout << "아이템이 있습니다." << endl;
 		break;
 	case 2:
-		my_user.DecreaseHp(int )
+		user_hp -= 2;
+		my_user.DecreaseHp(2);
 		cout << "적이 있습니다! HP가 -2 감소합니다 !" << endl;
 		break;
 	case 3:
-		user_hp += 2; // 포션을 사용하여 HP 회복
+		user_hp += 2;
+		my_user.IncreaseHp(2);
 		cout << "포션을 사용하여 HP가 + 2 증가합니다 !" << endl;
 		break;
 	case 4:
