@@ -16,3 +16,7 @@ void User::DecreaseHp(int amount) {
 void User::IncreaseHp(int amount) {
 	hp += amount;
 }
+
+void User::doAttack() {
+	cout >> "АјАн!" << endl;
+}
